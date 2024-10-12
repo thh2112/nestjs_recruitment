@@ -6,7 +6,9 @@ import { values as _values } from 'lodash';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CONFIG_KEYS } from './constant';
+import { AuthModule } from './features/auth/auth.module';
 import { UsersModule } from './features/users/users.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { UsersModule } from './features/users/users.module';
       inject: [ConfigService],
     }),
     UsersModule,
+    AuthModule,
+    SharedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

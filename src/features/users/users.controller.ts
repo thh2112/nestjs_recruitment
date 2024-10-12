@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -9,14 +9,8 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create({
-      email: 'Hoang',
-      password: '123',
-      age: '20',
-      address: 'Ha Noi',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+    const result = await this.usersService.create(createUserDto);
+    return { result, message: 'User created successfully' };
   }
 
   @Get()
